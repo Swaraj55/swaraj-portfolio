@@ -57,3 +57,26 @@
     line-height: 1.5em;
     width: 96%;
 }
+
+button {
+    font-weight: 700;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 34px;
+    font-size: 18px;
+    position: relative;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+}
+
+button i {
+    font-size: 18px;
+    margin-left: 10px;
+    position: relative;
+    margin-top: 5px;
+    transition: 0.3s ease-in-out;
+  }
+
+button:hover i{
+    margin-left: 25px;
+}
