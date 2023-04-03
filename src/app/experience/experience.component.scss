@@ -1,0 +1,13 @@
+#experience {
+    background-color: black;
+}
+
+.accordion-button.collapsed::after {
+    background: url('/assets/plus.svg');
+    height: 12px;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background: url("/assets/dash.svg");
+    height: 12px;
+}

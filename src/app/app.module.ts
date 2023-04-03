@@ -9,12 +9,18 @@ import { BannerComponent } from './banner/banner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { MatIconModule } from '@angular/material/icon';
+import { SkillsExperienceComponent } from './skills-experience/skills-experience.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ExperienceComponent } from './experience/experience.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BannerComponent
+    BannerComponent,
+    SkillsExperienceComponent,
+    ProjectsComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
