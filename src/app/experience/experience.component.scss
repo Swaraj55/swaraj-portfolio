@@ -3,11 +3,26 @@
 }
 
 .accordion-button.collapsed::after {
-    background: url('/assets/plus.svg');
-    height: 12px;
+    background: url('/assets/plus-lg.svg');
 }
 
 .accordion-button:not(.collapsed)::after {
-    background: url("/assets/dash.svg");
-    height: 12px;
+    background: url("/assets/dash-lg.svg");
+}
+
+.accordion-item {
+    border-color: #5d146d;
+}
+
+.accordion-button {
+    background-color: #5d146d;
+}
+
+.accordion-body {
+    background-color: rgba(93, 20, 109, 0.4);
+    border-radius: 5px;
+}
+
+.color-of-chips {
+    background-color: #803db7;
 }
