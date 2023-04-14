@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperienceComponent implements OnInit {
 
-  programmingLangSeceon: string[] = ['JavaScript', 'TypeScript', 'Angular 14+', 'Angular Material', 'HTML5', 'CSS3', 'Bootstrap 4 & 5', 'Ng-Gridster2', 'NodeJS'];
+  programmingLangSeceon: string[] = ['JavaScript', 'TypeScript', 'Angular 14+', 'Angular Material', 'Bootstrap 4 & 5', 'NodeJS'];
 
   constructor() { }
 
