@@ -1,8 +1,38 @@
-<section id="Projects bg-light">
+<section id="project-section">
     <div class="container">
         <div class="row p-3">
             <div class="col-12 text-center text-dark fw-bolder display-3">
                 Projects
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="row text-center p-5">
+                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="allBackgroundColor"  (click)="projectsTab('All')">
+                    All
+                </div>
+                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="angularBackgroundColor"  (click)="projectsTab('Angular')">
+                    Angular
+                </div>
+                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="javascriptBackgroundColor"  (click)="projectsTab('JavaScript')">
+                    JavaScript
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-md-4 image-section" style="position: relative;" *ngFor="let project of selectedProjects">
+                <img [src]="project.image" alt="Avatar" class="image rounded " style="width:100%; height: 300px;">
+                <div class="middle">
+                    <div class="text-center text-dark fw-bolder display-6">{{project.project_name}}</div>
+                    <div class="text-center fw-bolder" style="color: #5d146d; font-size: 22px;">{{project.technical_lang}}</div>
+
+                    <button type="button" class="mt-5">
+                        <span>
+                            Learn more
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

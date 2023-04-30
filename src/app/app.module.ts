@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { SkillsExperienceComponent } from './skills-experience/skills-experience.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { ContactComponent } from './contact/contact.component';
+import { FooterSectionComponent } from './footer-section/footer-section.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ExperienceComponent } from './experience/experience.component';
     BannerComponent,
     SkillsExperienceComponent,
     ProjectsComponent,
-    ExperienceComponent
+    ExperienceComponent,
+    ContactComponent,
+    FooterSectionComponent
   ],
   imports: [
     BrowserModule,
