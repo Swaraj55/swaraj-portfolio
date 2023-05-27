@@ -1,0 +1,40 @@
+// Import theming functions
+@import '~@angular/material/theming';
+
+:host ::ng-deep {
+    //The below code when field is empty
+    .mat-form-field-empty.mat-form-field-label {
+        color: aliceblue;
+    }
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+        color: #212529;
+    }
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label {
+        color: #f44336;
+    }
+    .ng-valid .mat-form-field-label {
+        color: aliceblue;
+    }
+
+    //The below code apply when the input field is empty or intial state of the input field
+    .mat-form-field-appearance-outline .mat-form-field-outline{
+        color: aliceblue;
+    }
+    //The Below code apply when we put focus on the input field
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+        color: #212529;
+    }  
+
+    .field input{
+        caret-color: aliceblue;/*The 'caret-color' is CSS property sets the color of 
+        the color of the insertion caret, the visible marker(or blinking marker)*/
+    }
+    .mat-form-field-infix .mat-input-element{
+        color: aliceblue;
+    }
+
+    .mat-form-field-appearance-legacy .ng-untouched .mat-form-field-underline {
+        color: #4359df;
+    }
+} 
+  

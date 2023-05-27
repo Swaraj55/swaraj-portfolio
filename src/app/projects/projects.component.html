@@ -7,27 +7,27 @@
         </div>
 
         <div class="row p-3">
-            <div class="row text-center p-5">
-                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="allBackgroundColor"  (click)="projectsTab('All')">
-                    All
+            <div class="row text-center">
+                <div class="col-4"  (click)="projectsTab('All')">
+                   <span class="py-2 px-5" [ngClass]="allBackgroundColor">All</span>
                 </div>
-                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="angularBackgroundColor"  (click)="projectsTab('Angular')">
-                    Angular
+                <div class="col-4 py-2" (click)="projectsTab('Angular')">
+                    <span class="py-2 px-5" [ngClass]="angularBackgroundColor">Angular</span>
                 </div>
-                <div class="col-4 py-2 fontSize fw-bolder" [ngClass]="javascriptBackgroundColor"  (click)="projectsTab('JavaScript')">
-                    JavaScript
+                <div class="col-4 py-2"  (click)="projectsTab('JavaScript')">
+                    <span class="py-2 px-5" [ngClass]="javascriptBackgroundColor">JavaScript</span>
                 </div>
             </div>
         </div>
 
-        <div class="row p-3">
-            <div class="col-md-4 image-section" style="position: relative;" *ngFor="let project of selectedProjects">
-                <img [src]="project.image" alt="Avatar" class="image rounded " style="width:100%; height: 300px;">
+        <div class="row mb-2">
+            <div class="col-xs-12 col-sm-6 col-md-4 image-section mb-4" style="position: relative;" *ngFor="let project of selectedProjects">
+                <img [src]="project.image" alt="Avatar" class="image rounded " style="max-width:100%; height: 400px;display: inline-block;">
                 <div class="middle">
-                    <div class="text-center text-dark fw-bolder display-6">{{project.project_name}}</div>
-                    <div class="text-center fw-bolder" style="color: #5d146d; font-size: 22px;">{{project.technical_lang}}</div>
+                    <div class="text-center text-dark fw-bolder" style="font-size: 25px;">{{project.project_name}}</div>
+                    <div class="text-center fw-bolder" style="color: #5d146d; font-size: 18px;">{{project.technical_lang}}</div>
 
-                    <button type="button" class="mt-5">
+                    <button type="button" class="mt-5" (click)="detailsOfSpecificProject(project)">
                         <span>
                             Learn more
                         </span>

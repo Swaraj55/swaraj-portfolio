@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
   navbarClass: string = 'navbar-bg-transparent'
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    // console.log(window.scrollY)
+    console.log(window.scrollY)
     if (window.scrollY > 75) {
       this.navbarClass = 'navbar-bg-black';
     } else {

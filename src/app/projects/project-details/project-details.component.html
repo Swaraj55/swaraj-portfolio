@@ -1,0 +1,30 @@
+<div class="image-container">
+    <img [src]="local_data.image" alt="Project Image">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-dark fw-bolder mt-2" style="font-size: 22px; margin-left: 15px;">{{local_data.project_name}}</div>
+            <div class="text-secondary" style="font-size: 18px; margin-left: 15px;font-weight: bolder;">{{local_data.platform_name}}</div>
+
+
+            <div class="text-dark mt-4" style="font-size: 18px; margin-left: 15px;">
+                {{local_data.description}}
+            </div>
+        </div>
+
+        <div class="col-12 mt-5 mb-2">
+            <div style="float: left; margin-left: 15px;">
+                <button mat-flat-button style="background-color: #5d146d; color: white;" (click)="navigateToProject(local_data.project_link)">
+                    <mat-icon>open_in_new</mat-icon>
+                    <span style="margin-left: 10px;">View Site</span>
+                </button>
+            </div>
+            <div style="float: right;">
+                <button mat-icon-button style="color: grey" matTooltip="Close" (click)="onNoClick()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
