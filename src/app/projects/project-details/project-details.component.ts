@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 export class ProjectDetailsComponent implements OnInit {
   
   local_data: any;
+  hideTheViewSite: boolean = false;
 
   @HostListener('document:keydown.escape') // Close dialog on escape key press
   onKeydownHandler() {
@@ -25,8 +26,6 @@ export class ProjectDetailsComponent implements OnInit {
   ) {
 
     this.local_data = {...projectData};
-
-    console.log(this.local_data)
   }
 
   ngOnInit(): void {}

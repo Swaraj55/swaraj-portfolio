@@ -25,7 +25,7 @@ export class ProjectsComponent implements OnInit {
       It provides SMTP servers for sending, POP3/IMAP servers for retrieval, and features like storage, folder organization, 
       and spam filtering. Popular services include Gmail, Outlook.com, and Yahoo Mail.`,
       image: '/assets/mailer.png',
-      project_link: 'https://url-shortner-nhiy.onrender.com/#/Home'
+      project_link: ''
     },
     {
       id: 'angular',
@@ -47,7 +47,7 @@ export class ProjectsComponent implements OnInit {
        temperature, humidity, wind speed, and other meteorological data for a specified location. With an intuitive interface and 
        reliable data sources, users can stay updated on the current weather conditions effortlessly.`,
       image: '/assets/current-weather.png',
-      project_link: 'https://url-shortner-nhiy.onrender.com/#/Home'
+      project_link: ''
     }
   ];
 
@@ -100,7 +100,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   detailsOfSpecificProject(project: any) {
-    console.log("Projects....", project)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -122,7 +121,6 @@ export class ProjectsComponent implements OnInit {
 
     const dialogRef = this._matDialog.open(ProjectDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(response => {
-      console.log(response)
     })
   }
   

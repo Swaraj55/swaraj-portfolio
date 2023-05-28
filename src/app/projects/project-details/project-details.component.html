@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-12 mt-5 mb-2">
-            <div style="float: left; margin-left: 15px;">
+            <div style="float: left; margin-left: 15px;" *ngIf="local_data.project_link">
                 <button mat-flat-button style="background-color: #5d146d; color: white;" (click)="navigateToProject(local_data.project_link)">
                     <mat-icon>open_in_new</mat-icon>
                     <span style="margin-left: 10px;">View Site</span>
