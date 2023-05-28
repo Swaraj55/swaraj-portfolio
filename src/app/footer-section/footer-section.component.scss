@@ -1,0 +1,75 @@
+#footer-section {
+    background-color: black;
+}
+
+.up-arrow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.up-arrow img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.up-arrow:hover {
+    animation: glowing-shadow 1s infinite;
+}
+
+@keyframes glowing-shadow {
+    0% {
+        box-shadow: 0 0 5px rgba(93, 20, 109, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(93, 20, 109, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(93, 20, 109, 0.5);
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.color-change-svg {
+    width: 60px;
+    /* Set the width and height as per your requirements */
+    height: 60px;
+    background-color: white; /* Set the desired background color */
+    border-radius: 47%; /* Add border-radius to create a circular background */
+    padding: 10px;
+}
+
+.color-change-svg use {
+    fill: black;
+    transition: fill 0.3s ease-in-out;
+}
+
+.color-change-svg:hover {
+    background: linear-gradient(-45deg,  #5d146d , #bd62b8);
+}
+
+.color-change-svg:hover use{
+   fill: white
+}
+
+.copyright {
+    color: #5d146d;
+    font-size: 24px;
+}
