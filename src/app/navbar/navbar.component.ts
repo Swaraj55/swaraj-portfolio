@@ -22,4 +22,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scrollToConnect(): void {
+    const projectsSection = document.getElementById('contact');
+    if(projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }

@@ -1,3 +1,39 @@
-.skill_section {
+#skill_section {
     background-color: black;
+}
+
+.custom-progress-bar {
+    height: 25px; /* Adjust the height value as desired */
+}
+
+
+.custom-color-tailwind-progress-bar {
+    background-color: #44B09E;
+    background-size: 1rem 1rem; /* Adjust the size of the stripes */
+}
+
+.custom-color-html-progress-bar {
+    background-color: #EC9F05;
+    background-size: 1rem 1rem; /* Adjust the size of the stripes */
+}
+
+.custom-color-css-progress-bar{
+    background-color:  #702963;
+    background-size: 1rem 1rem; /* Adjust the size of the stripes */
+}
+
+.custom-color-nodejs-progress-bar {
+    background-color:  #228b22;
+    background-size: 1rem 1rem; /* Adjust the size of the stripes */
+}
+
+.custom-color-mongodb-progress-bar {
+    background-color:  #fc6c85;
+    background-size: 1rem 1rem;
+}
+
+.skill_item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust the spacing between skill items */
 }

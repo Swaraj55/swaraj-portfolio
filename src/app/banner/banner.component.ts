@@ -23,4 +23,11 @@ export class BannerComponent implements OnInit {
 
     const typed = new Typed('.sec-text', options);
   }
+
+  scrollToProjects() {
+    const projectsSection = document.getElementById('project-section');
+    if(projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
