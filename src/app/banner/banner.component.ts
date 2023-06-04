@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import Typed from 'typed.js';
-import { } from '@fortawesome/free-solid-svg-icons'
-import { } from '@fortawesome/free-regular-svg-icons'
 
 @Component({
   selector: 'app-banner',

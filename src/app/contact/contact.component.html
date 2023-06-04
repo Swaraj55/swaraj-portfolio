@@ -3,7 +3,9 @@
         <div class="row p-3">
             <div class="col-12 text-center fw-bolder text-white display-3">
                 Contact
+                <hr class="mx-auto" style="height: 6px;width: 10%">
             </div>
+            
             <div class="col-12 text-center fw-bolder text-white mt-3" style="font-size: 18px;">
                 <div>Have a question or interested in collaboration?</div>
             </div>
@@ -59,7 +61,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                       <button style="width: 100%;" mat-flat-button type="button">Submit</button>
+                       <button style="width: 100%;" (click)="sendMail()" mat-flat-button type="button">Submit</button>
                     </div>
                 </div>
             </div>

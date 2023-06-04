@@ -15,6 +15,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterSectionComponent } from './footer-section/footer-section.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //Angular Material Module Imports
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { MailSuccessComponent } from './contact/mail-success/mail-success.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
     ContactComponent,
     FooterSectionComponent,
     ProjectDetailsComponent,
+    MailSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     MatIconModule,
     MatFormFieldModule,

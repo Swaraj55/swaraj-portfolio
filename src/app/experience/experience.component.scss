@@ -35,3 +35,22 @@ button.acc-btn {
     align-items: center;
     grid-gap: 10px;
 }
+
+.background-image-left {
+    top: 190%;
+    left: -6%;
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    opacity: 0.2;
+}
+
+
+.background-image-right {
+    top: 160%;
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    right: 0%;
+    opacity: 0.2;
+}
