@@ -23,14 +23,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/swaraj-portfolio",
+            "outputPath": "../portfolio-server/dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/portfolio-logo.ico",
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
@@ -98,7 +98,7 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/portfolio-logo.ico",
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [

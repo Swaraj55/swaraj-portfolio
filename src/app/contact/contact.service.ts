@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactService {
 
-  public apiURL = 'http://localhost:3000/send';
+  public apiURL = '/send';
   constructor(private httpClient: HttpClient) { }
 
   submitInfo(payload: any) {
