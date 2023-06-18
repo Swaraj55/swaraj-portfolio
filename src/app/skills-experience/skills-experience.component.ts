@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgwWowService } from 'ngx-wow';
 
 @Component({
   selector: 'app-skills-experience',
@@ -77,10 +77,14 @@ export class SkillsExperienceComponent implements OnInit {
       default: false
     }
   ]
-  constructor() { }
+  
+  constructor(
+    private ngwWowService: NgwWowService,
+  ) {
+    this.ngwWowService.init();
+  }
 
   ngOnInit(): void {
-    
   }
 
   
