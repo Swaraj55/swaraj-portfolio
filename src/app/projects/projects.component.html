@@ -1,38 +1,168 @@
 <section id="project-section">
+    <div class="projects-background"></div>
     <div class="container">
-        <div class="row p-3">
-            <div class="col-12 text-center wow animate__animated animate__fadeInDown text-dark fw-bolder display-3">
-                Projects
-                <hr class="mx-auto" style="height: 6px;width: 10%">
+        <div class="row p-3 section-header">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <span class="section-number">03.</span>
+                    <span class="gradient-text">Featured Projects</span>
+                </div>
+                <p class="section-subtitle">Some of my recent work</p>
             </div>
         </div>
 
-        <div class="row p-3">
-            <div class="row text-cente wow animate__animated animate__fadeInDown">
-                <div class="col-4"  (click)="projectsTab('All')">
-                   <span class="py-2 px-5" [ngClass]="allBackgroundColor">All</span>
-                </div>
-                <div class="col-4 py-2" (click)="projectsTab('Angular')">
-                    <span class="py-2 px-5" [ngClass]="angularBackgroundColor">Angular</span>
-                </div>
-                <div class="col-4 py-2"  (click)="projectsTab('JavaScript')">
-                    <span class="py-2 px-5" [ngClass]="javascriptBackgroundColor">JavaScript</span>
-                </div>
+        <div class="row p-3 filter-container">
+            <div class="col-12 d-flex justify-content-center flex-wrap gap-3">
+                <button 
+                    type="button" 
+                    class="filter-btn" 
+                    [class.active]="defaultSelectedTab === 'All'"
+                    (click)="projectsTab('All')">
+                    <span>All</span>
+                    <span class="filter-count">{{getProjectCount('All')}}</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="filter-btn" 
+                    [class.active]="defaultSelectedTab === 'Angular'"
+                    (click)="projectsTab('Angular')">
+                    <i class="fa-brands fa-angular"></i>
+                    <span>Angular</span>
+                    <span class="filter-count">{{getProjectCount('Angular')}}</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="filter-btn" 
+                    [class.active]="defaultSelectedTab === 'JavaScript'"
+                    (click)="projectsTab('JavaScript')">
+                    <i class="fa-brands fa-js"></i>
+                    <span>JavaScript</span>
+                    <span class="filter-count">{{getProjectCount('JavaScript')}}</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="filter-btn" 
+                    [class.active]="defaultSelectedTab === 'NPM Libraries'"
+                    (click)="projectsTab('NPM Libraries')">
+                    <i class="fa-brands fa-npm"></i>
+                    <span>NPM Libraries</span>
+                    <span class="filter-count">{{getProjectCount('NPM Libraries')}}</span>
+                </button>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 image-section mb-4 wow animate__animated animate__fadeInLeft" style="position: relative;" *ngFor="let project of selectedProjects">
-                <img [src]="project.image" alt="Avatar" class="image rounded " style="max-width:100%; height: 400px;display: inline-block;">
-                <div class="middle">
-                    <div class="text-center text-dark fw-bolder" style="font-size: 25px;">{{project.project_name}}</div>
-                    <div class="text-center fw-bolder" style="color: #5d146d; font-size: 18px;">{{project.technical_lang}}</div>
+        <!-- Projects Grid (All, Angular, JavaScript, NPM Libraries) -->
+        <div class="row projects-grid">
+            <!-- Regular Project Cards -->
+            <div 
+                class="col-xs-12 col-sm-6 col-md-4 project-item" 
+                *ngFor="let project of selectedProjects; let i = index"
+                [style.animation-delay]="i * 0.1 + 's'">
+                <div 
+                    class="project-card interactive-card" 
+                    *ngIf="project.type === 'project'"
+                    [class.expanded]="isCardExpanded(project)"
+                    (click)="toggleCardExpansion(project)">
+                    <div class="project-image-wrapper">
+                        <img [src]="project.image" [alt]="project.project_name" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-tech-badge">{{project.technical_lang}}</div>
+                        </div>
+                        <div class="project-hover-effect"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">{{project.project_name}}</h3>
+                        <p class="project-platform">{{project.platform_name}}</p>
+                        <div class="project-description" *ngIf="isCardExpanded(project)">
+                            <p>{{project.description}}</p>
+                        </div>
+                        <div class="project-actions">
+                            <button 
+                                type="button" 
+                                class="project-btn primary-btn" 
+                                (click)="detailsOfSpecificProject(project); $event.stopPropagation()">
+                                <span>View Details</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <a 
+                                *ngIf="project.project_link" 
+                                [href]="project.project_link" 
+                                target="_blank"
+                                (click)="$event.stopPropagation()"
+                                class="project-btn secondary-btn">
+                                <i class="fa-solid fa-external-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                    <button type="button" class="mt-5" (click)="detailsOfSpecificProject(project)">
-                        <span>
-                            Learn more
-                        </span>
-                    </button>
+                <!-- NPM Library Cards -->
+                <div 
+                    class="npm-library-card interactive-card" 
+                    *ngIf="project.type === 'npm'"
+                    [class.expanded]="isCardExpanded(project)"
+                    (click)="toggleCardExpansion(project)">
+                    <div class="npm-header">
+                        <div class="npm-icon-wrapper">
+                            <i class="fa-brands fa-npm npm-icon"></i>
+                        </div>
+                        <div class="npm-badge">
+                            <i class="fa-solid fa-box"></i>
+                            <span>NPM Package</span>
+                        </div>
+                    </div>
+                    <div class="npm-content">
+                        <h3 class="npm-title">{{project.project_name}}</h3>
+                        <p class="npm-description">{{project.description}}</p>
+                        
+                        <div class="npm-features" *ngIf="isCardExpanded(project)">
+                            <h4 class="features-title">
+                                <i class="fa-solid fa-star"></i>
+                                Key Features
+                            </h4>
+                            <ul class="features-list">
+                                <li *ngFor="let feature of project.features">
+                                    <i class="fa-solid fa-check"></i>
+                                    {{feature}}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="npm-info" *ngIf="isCardExpanded(project)">
+                            <div class="info-item">
+                                <i class="fa-solid fa-code"></i>
+                                <span class="info-label">Install:</span>
+                                <code class="install-command">{{project.installCommand}}</code>
+                            </div>
+                            <div class="info-item" *ngIf="project.version">
+                                <i class="fa-solid fa-tag"></i>
+                                <span class="info-label">Version:</span>
+                                <span class="info-value">{{project.version}}</span>
+                            </div>
+                        </div>
+
+                        <div class="npm-actions">
+                            <a 
+                                [href]="project.npmLink" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                (click)="$event.stopPropagation()"
+                                class="npm-btn primary-btn">
+                                <i class="fa-brands fa-npm"></i>
+                                <span>View on NPM</span>
+                            </a>
+                            <a 
+                                *ngIf="project.githubLink" 
+                                [href]="project.githubLink" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                (click)="$event.stopPropagation()"
+                                class="npm-btn secondary-btn">
+                                <i class="fa-brands fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

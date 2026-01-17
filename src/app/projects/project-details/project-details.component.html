@@ -1,29 +1,106 @@
-<div class="image-container">
-    <img [src]="local_data.image" alt="Project Image">
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="text-dark fw-bolder mt-2" style="font-size: 22px; margin-left: 15px;">{{local_data.project_name}}</div>
-            <div class="text-secondary" style="font-size: 18px; margin-left: 15px;font-weight: bolder;">{{local_data.platform_name}}</div>
+<div class="project-details-container">
+    <!-- Close Button -->
+    <button class="close-btn" (click)="onNoClick()" title="Close">
+        <i class="fa-solid fa-times"></i>
+    </button>
 
-
-            <div class="text-dark mt-4" style="font-size: 18px; margin-left: 15px;">
-                {{local_data.description}}
+    <div class="project-details-wrapper">
+        <!-- Left Side - Image/Visual -->
+        <div class="project-visual-section" [class.npm-visual]="local_data.type === 'npm'">
+            <div *ngIf="local_data.type === 'project'" class="project-image-wrapper">
+                <img [src]="local_data.image" [alt]="local_data.project_name">
+                <div class="image-gradient-overlay"></div>
+            </div>
+            <div *ngIf="local_data.type === 'npm'" class="npm-visual-content">
+                <div class="npm-icon-container">
+                    <i class="fa-brands fa-npm"></i>
+                </div>
+                <div class="npm-visual-badge">
+                    <i class="fa-solid fa-box"></i>
+                    <span>NPM Package</span>
+                </div>
             </div>
         </div>
 
-        <div class="col-12 mt-5 mb-2">
-            <div style="float: left; margin-left: 15px;" *ngIf="local_data.project_link">
-                <button mat-flat-button style="background-color: #5d146d; color: white;" (click)="navigateToProject(local_data.project_link)">
-                    <mat-icon>open_in_new</mat-icon>
-                    <span style="margin-left: 10px;">View Site</span>
-                </button>
+        <!-- Right Side - Content -->
+        <div class="project-info-section">
+            <div class="project-header-info">
+                <h1 class="project-title">{{local_data.project_name}}</h1>
+                <div class="project-badges">
+                    <span class="badge platform">
+                        <i class="fa-solid fa-tag"></i>
+                        {{local_data.platform_name}}
+                    </span>
+                    <span class="badge tech">
+                        <i class="fa-solid fa-code"></i>
+                        {{local_data.technical_lang}}
+                    </span>
+                </div>
             </div>
-            <div style="float: right;">
-                <button mat-icon-button style="color: grey" matTooltip="Close" (click)="onNoClick()">
-                    <mat-icon>close</mat-icon>
-                </button>
+
+            <div class="project-description">
+                <p>{{local_data.description}}</p>
+            </div>
+
+            <!-- NPM Library Specific Content -->
+            <div *ngIf="local_data.type === 'npm'" class="npm-sections">
+                <div class="npm-features-box">
+                    <h3 class="section-heading">
+                        <i class="fa-solid fa-star"></i>
+                        Key Features
+                    </h3>
+                    <ul class="features-grid">
+                        <li *ngFor="let feature of local_data.features">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>{{feature}}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="npm-install-box">
+                    <h3 class="section-heading">
+                        <i class="fa-solid fa-terminal"></i>
+                        Installation
+                    </h3>
+                    <div class="command-box">
+                        <code>{{local_data.installCommand}}</code>
+                        <button class="copy-button" (click)="copyToClipboard(local_data.installCommand)" [class.copied]="copied">
+                            <i class="fa-solid" [class.fa-copy]="!copied" [class.fa-check]="copied"></i>
+                            <span>{{copied ? 'Copied!' : 'Copy'}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a 
+                    *ngIf="local_data.project_link" 
+                    [href]="local_data.project_link" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn-primary">
+                    <i class="fa-solid fa-external-link"></i>
+                    <span>View Live Site</span>
+                </a>
+                <a 
+                    *ngIf="local_data.npmLink" 
+                    [href]="local_data.npmLink" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn-primary npm-btn">
+                    <i class="fa-brands fa-npm"></i>
+                    <span>View on NPM</span>
+                </a>
+                <a 
+                    *ngIf="local_data.githubLink" 
+                    [href]="local_data.githubLink" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn-secondary">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
     </div>

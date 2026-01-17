@@ -1,24 +1,62 @@
 <section class="banner" id="home">
+    <div class="banner-background"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-               <!-- <div class="tagline">
-                    Welcome to my portfolio
-               </div> -->
-               <div class="fw-bolder typewrite-effect text-white display-3 text-break">
-                   Hi, I'm Swaraj! I'm a <span class="sec-text ps-2" style="height: 50px;overflow: hidden;"></span> 
+        <div class="row align-items-center min-vh-100">
+            <div class="col-xs-12 col-sm-12 col-md-6 banner-content">
+               <div class="greeting-text fade-in-up delay-0">Hello, I'm</div>
+               <div class="name-text fade-in-up delay-1">
+                   <span class="gradient-text">Swaraj Kumar</span>
                </div>
-               <p>I'm a Front-End Developer located in Varanasi, India. I have a serious passion for UI effects, animations and creating intuitive, dynamic user experiences.</p>
-               <p>Well coordinate person, problem solver and give high attention to details. Fan of cricket and PC games.</p>
-               <p>Interested in the entire frontend and backend spectrum and working with various ambitious projects with positive people.</p>
-               <button type="button" (click)="scrollToProjects()" class="mt-2">View my work<i class="fa-solid fa-arrow-right"></i></button>
+               <div class="typewrite-effect fade-in-up delay-2">
+                   I'm a <span class="sec-text ps-2"></span> 
+               </div>
+               <div class="description-text fade-in-up delay-3">
+                   <p>I'm a Front-End Developer located in Varanasi, India. I have a serious passion for UI effects, animations and creating intuitive, dynamic user experiences.</p>
+                   <p>Well coordinate person, problem solver and give high attention to details. Fan of cricket and PC games.</p>
+                   <p>Interested in the entire frontend and backend spectrum and working with various ambitious projects with positive people.</p>
+               </div>
+               <div class="button-group fade-in-up delay-4">
+                   <button type="button" (click)="scrollToProjects()" class="interactive-btn primary-btn">
+                       <span>View my work</span>
+                       <i class="fa-solid fa-arrow-right"></i>
+                   </button>
+                   <button type="button" (click)="scrollToContact()" class="interactive-btn secondary-btn">
+                       <span>Get in touch</span>
+                       <i class="fa-solid fa-envelope"></i>
+                   </button>
+               </div>
+               <div class="social-links fade-in-up delay-5">
+                   <a href="#" class="social-link" target="_blank" title="GitHub">
+                       <i class="fa-brands fa-github"></i>
+                   </a>
+                   <a href="#" class="social-link" target="_blank" title="LinkedIn">
+                       <i class="fa-brands fa-linkedin"></i>
+                   </a>
+                   <a href="#" class="social-link" target="_blank" title="Twitter">
+                       <i class="fa-brands fa-twitter"></i>
+                   </a>
+               </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 text-center">
-                <div class="zoomIn">
-                    <img src="../../assets/cute_astronaut.png" alt="Mini Astronaut" width="400" height="400">
+                <div class="astronaut-container">
+                    <div class="floating-astronaut">
+                        <img src="../../assets/cute_astronaut.png" alt="Mini Astronaut" class="astronaut-img">
+                        <div class="orbit-ring"></div>
+                        <div class="orbit-ring ring-2"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 </section>

@@ -11,9 +11,6 @@ import { Overlay } from '@angular/cdk/overlay';
 export class ProjectsComponent implements OnInit {
 
   defaultSelectedTab: string ='All';
-  allBackgroundColor: string = 'add-background-color';
-  javascriptBackgroundColor: string = '';
-  angularBackgroundColor: string = '';
 
   projects: any[] = [
     {
@@ -25,7 +22,8 @@ export class ProjectsComponent implements OnInit {
       It provides SMTP servers for sending, POP3/IMAP servers for retrieval, and features like storage, folder organization, 
       and spam filtering. Popular services include Gmail, Outlook.com, and Yahoo Mail.`,
       image: '/assets/mailer.png',
-      project_link: ''
+      project_link: '',
+      type: 'project'
     },
     {
       id: 'angular',
@@ -36,7 +34,8 @@ export class ProjectsComponent implements OnInit {
        links. With this free service, users can easily share and track their shortened URLs, enhancing readability, and enabling
        effective analytics.`,
       image: '/assets/url-shortner.png',
-      project_link: 'https://url-shortner-nhiy.onrender.com/#/Home'
+      project_link: 'https://url-shortner-nhiy.onrender.com/#/Home',
+      type: 'project'
     },
     {
       id: 'angular',
@@ -47,11 +46,40 @@ export class ProjectsComponent implements OnInit {
        temperature, humidity, wind speed, and other meteorological data for a specified location. With an intuitive interface and 
        reliable data sources, users can stay updated on the current weather conditions effortlessly.`,
       image: '/assets/current-weather.png',
-      project_link: ''
+      project_link: '',
+      type: 'project'
+    }
+  ];
+
+  npmLibraries: any[] = [
+    {
+      id: 'npm',
+      project_name: 'ngx-otp-code-input',
+      technical_lang: 'Angular Library / TypeScript',
+      platform_name: 'NPM Package',
+      description: `A customizable Angular component for building clean OTP (One-Time Password) input forms with flexibility and advanced features. Perfect for authentication flows, verification codes, and secure input scenarios.`,
+      features: [
+        'Customizable length (4, 6, or any number of digits)',
+        'Masking/Plain display options',
+        'Integer-only restriction',
+        'Autofocus with smooth navigation',
+        'Read-only and disabled states',
+        'Status feedback (success/error indicators)',
+        'Animated transitions',
+        'Event emissions (otpChange, otpComplete)'
+      ],
+      npmLink: 'https://www.npmjs.com/package/ngx-otp-code-input',
+      githubLink: '',
+      installCommand: 'npm install ngx-otp-code-input',
+      version: 'Latest',
+      downloads: 'Active',
+      type: 'npm'
     }
   ];
 
   selectedProjects: any[] = [];
+  showNpmSection: boolean = false;
+  expandedCard: any = null;
 
   constructor(
     private _matDialog: MatDialog,
@@ -63,40 +91,52 @@ export class ProjectsComponent implements OnInit {
   }
 
   projectsTab(selectedTab: string) {
+    this.defaultSelectedTab = selectedTab;
+    this.expandedCard = null;
+    
     switch(selectedTab) {
       case 'All' : 
-          this.selectedProjects = []
-          this.allBackgroundColor = 'add-background-color';
-          this.angularBackgroundColor = 'remove-background-color';
-          this.javascriptBackgroundColor = 'remove-background-color';
-          this.selectedProjects = [...this.projects]
+          this.selectedProjects = [...this.projects, ...this.npmLibraries];
+          this.showNpmSection = false;
           break;
 
       case 'Angular' : 
-          this.selectedProjects = [];
-          this.allBackgroundColor = 'remove-background-color';
-          this.angularBackgroundColor = 'add-background-color';
-          this.javascriptBackgroundColor = 'remove-background-color';
-          this.selectedProjects = [...this.projects];
-          this.selectedProjects.forEach((item, index) => {
-            if(item.id === 'javascript') {
-              this.selectedProjects.splice(index, 1);
-            }
-          });
+          this.selectedProjects = this.projects.filter(item => item.id === 'angular');
+          this.showNpmSection = false;
           break;
 
       case 'JavaScript' : 
-          this.selectedProjects = [];
-          this.allBackgroundColor = 'remove-background-color';
-          this.angularBackgroundColor = 'remove-background-color';
-          this.javascriptBackgroundColor = 'add-background-color';
-          this.selectedProjects.forEach((item, index) => {
-            if(item.id === 'angular') {
-              this.selectedProjects.splice(index, 1);
-            }
-          });
+          this.selectedProjects = this.projects.filter(item => item.id === 'javascript');
+          this.showNpmSection = false;
+          break;
+
+      case 'NPM Libraries' :
+          this.selectedProjects = this.npmLibraries;
+          this.showNpmSection = false;
           break;
     }
+  }
+
+  getProjectCount(category: string): number {
+    if (category === 'All') {
+      return this.projects.length + this.npmLibraries.length;
+    }
+    if (category === 'NPM Libraries') {
+      return this.npmLibraries.length;
+    }
+    return this.projects.filter(p => p.id === category.toLowerCase()).length;
+  }
+
+  toggleCardExpansion(item: any): void {
+    if (this.expandedCard === item) {
+      this.expandedCard = null;
+    } else {
+      this.expandedCard = item;
+    }
+  }
+
+  isCardExpanded(item: any): boolean {
+    return this.expandedCard === item;
   }
 
   detailsOfSpecificProject(project: any) {

@@ -1,67 +1,97 @@
 <section id="contact">
+    <div class="contact-background"></div>
     <div class="container">
-        <div class="row p-3">
-            <div class="col-12 text-center fw-bolder text-white display-3 wow animate__animated animate__fadeInDown">
-                Contact
-                <hr class="mx-auto" style="height: 6px;width: 10%">
+        <div class="row p-3 section-header">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <span class="section-number">04.</span>
+                    <span class="gradient-text">Get In Touch</span>
+                </div>
+                <p class="section-subtitle">Have a question or interested in collaboration?</p>
+                <p class="section-description">I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
             </div>
-            
-            <div class="col-12 text-center fw-bolder text-white mt-3 wow animate__animated animate__fadeInDown" style="font-size: 18px;">
-                <div>Have a question or interested in collaboration?</div>
-            </div>
+        </div>
 
+        <div class="row contact-content">
             <!-- Image Section -->
-            <div class="col-md-5 col-sm-12 col-xs-12">
-                <img src="/assets/contact-us.png" alt="Contact US" width="400px" height="500px">
+            <div class="col-md-5 col-sm-12 col-xs-12 contact-image-wrapper">
+                <div class="contact-image-container">
+                    <img src="/assets/contact-us.png" alt="Contact US" class="contact-image">
+                    <div class="floating-elements">
+                        <div class="floating-element element-1"></div>
+                        <div class="floating-element element-2"></div>
+                        <div class="floating-element element-3"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Form Section -->
-            <div class="col-md-7 col-sm-12 col-xs-12 mt-5" [formGroup]="contactUs">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12 ">
-                        <mat-form-field class="field" appearance="outline" style="width: 100%;">
-                            <mat-label>Firstname</mat-label>
-                            <input type="text" matInput formControlName="firstname" required>
-                            <mat-error *ngIf="contactUs.controls['firstname'].hasError('required')">
-                                Firstname is required 
-                            </mat-error>
-                        </mat-form-field>
+            <div class="col-md-7 col-sm-12 col-xs-12 contact-form-wrapper" [formGroup]="contactUs">
+                <div class="contact-form">
+                    <div class="form-row">
+                        <div class="col-md-6 col-sm-12 form-field-wrapper">
+                            <mat-form-field class="custom-field" appearance="outline">
+                                <mat-label>First Name</mat-label>
+                                <input type="text" matInput formControlName="firstname" required>
+                                <mat-icon matPrefix>person</mat-icon>
+                                <mat-error *ngIf="contactUs.controls['firstname'].hasError('required')">
+                                    First name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-sm-12 form-field-wrapper">
+                            <mat-form-field class="custom-field" appearance="outline">
+                                <mat-label>Last Name</mat-label>
+                                <input type="text" matInput formControlName="lastname" required>
+                                <mat-icon matPrefix>person_outline</mat-icon>
+                                <mat-error *ngIf="contactUs.controls['lastname'].hasError('required')">
+                                    Last name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 ">
-                        <mat-form-field class="field" appearance="outline" style="width: 100%;">
-                            <mat-label>Lastname</mat-label>
-                            <input type="text" matInput formControlName="lastname" required>
-                            <mat-error *ngIf="contactUs.controls['lastname'].hasError('required')">
-                                Lastname is required 
-                            </mat-error>
-                        </mat-form-field>
+                    
+                    <div class="form-row">
+                        <div class="col-12 form-field-wrapper">
+                            <mat-form-field class="custom-field" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput formControlName="email" required>
+                                <mat-icon matPrefix>email</mat-icon>
+                                <mat-error *ngIf="contactUs.controls['email'].hasError('required')">
+                                    Email is required
+                                </mat-error>
+                                <mat-error *ngIf="contactUs.controls['email'].hasError('email')">
+                                    Please enter a valid email
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 ">
-                        <mat-form-field class="field" appearance="outline" style="width: 100%;">
-                            <mat-label>Email</mat-label>
-                            <input type="text" matInput formControlName="email" required>
-                            <mat-error *ngIf="contactUs.controls['email'].hasError('required')">
-                                Email is required.
-                            </mat-error>
-                            <mat-error *ngIf="contactUs.controls['email'].hasError('email')">
-                                Please enter a valid email.
-                            </mat-error>
-                        </mat-form-field>
+                    
+                    <div class="form-row">
+                        <div class="col-12 form-field-wrapper">
+                            <mat-form-field class="custom-field" appearance="outline">
+                                <mat-label>Message</mat-label>
+                                <textarea rows="6" matInput formControlName="message" required></textarea>
+                                <mat-icon matPrefix class="textarea-icon">message</mat-icon>
+                                <mat-error *ngIf="contactUs.controls['message'].hasError('required')">
+                                    Message is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 ">
-                        <mat-form-field class="field" appearance="outline" style="width: 100%;">
-                            <mat-label>Message</mat-label>
-                            <textarea rows="7" matInput formControlName="message"></textarea>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 ">
-                       <button style="width: 100%;" (click)="sendMail()" mat-flat-button type="button">Submit</button>
+                    
+                    <div class="form-row">
+                        <div class="col-12">
+                            <button 
+                                type="button" 
+                                class="submit-btn interactive-btn" 
+                                (click)="sendMail()"
+                                [disabled]="contactUs.invalid">
+                                <span>Send Message</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <div class="btn-ripple"></div>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

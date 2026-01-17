@@ -10,6 +10,7 @@ export class ProjectDetailsComponent implements OnInit {
   
   local_data: any;
   hideTheViewSite: boolean = false;
+  copied: boolean = false;
 
   @HostListener('document:keydown.escape') // Close dialog on escape key press
   onKeydownHandler() {
@@ -24,7 +25,6 @@ export class ProjectDetailsComponent implements OnInit {
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public projectData: any
   ) {
-
     this.local_data = {...projectData};
   }
 
@@ -36,5 +36,16 @@ export class ProjectDetailsComponent implements OnInit {
 
   navigateToProject(link: string): void {
     window.open(link, '_blank');
+  }
+
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      this.copied = true;
+      setTimeout(() => {
+        this.copied = false;
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
   }
 }

@@ -1,4 +1,21 @@
-<div>
+<div class="app-container">
+  <!-- Animated Background Particles -->
+  <div class="particles">
+    <div 
+      class="particle" 
+      *ngFor="let particle of particles"
+      [style.left]="particle.left"
+      [style.top]="particle.top"
+      [style.width]="particle.size"
+      [style.height]="particle.size"
+      [style.animation-delay]="particle.delay"
+      [style.animation-duration]="particle.duration">
+    </div>
+  </div>
+
+  <!-- Gradient Overlay -->
+  <div class="gradient-overlay"></div>
+
   <app-navbar></app-navbar>
   <app-banner></app-banner>
   <app-skills-experience></app-skills-experience>

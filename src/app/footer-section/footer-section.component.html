@@ -1,35 +1,65 @@
 <section id="footer-section">
+    <div class="footer-background"></div>
     <div class="container">
         <div class="row p-3">
-            <div class="col-12">
-                <div class="up-arrow" (click)="scrollToTop()">
-                    <img src="./assets/up-arrow.png" alt="Up Arrow" width="50px" height="50px">
+            <div class="col-12 footer-content">
+                <div class="footer-divider"></div>
+                
+                <div class="social-links-container">
+                    <p class="social-title">Let's Connect</p>
+                    <div class="social-links">
+                        <a 
+                            href="https://www.linkedin.com/in/swaraj-kumar5/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="social-link"
+                            title="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a 
+                            href="https://github.com/Swaraj55" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="social-link"
+                            title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a 
+                            href="https://twitter.com/SwarajV5" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="social-link"
+                            title="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a 
+                            href="https://www.instagram.com/learn.eternally/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="social-link"
+                            title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a 
+                            href="https://www.facebook.com/swaraj.chaturvedi.39" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="social-link"
+                            title="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-12 my-5">
-                <div class="social-links wow animate__animated animate__fadeInDown">
-                    <svg class="color-change-svg">
-                        <use xlink:href="assets/facebook.svg#facebook" (click)="handleClick('facebook')" style="cursor: pointer;"></use>
-                    </svg>  
-                    <svg class="color-change-svg">
-                        <use xlink:href="assets/linkedin.svg#linkedin" (click)="handleClick('linkedin')" style="cursor: pointer;"></use>
-                    </svg>  
-                    <svg class="color-change-svg">
-                        <use xlink:href="assets/twitter.svg#twitter" (click)="handleClick('twitter')" style="cursor: pointer;"></use>
-                    </svg>   
-                    <svg class="color-change-svg">
-                        <use xlink:href="assets/github.svg#github" (click)="handleClick('github')" style="cursor: pointer;"></use>
-                    </svg>   
-                    <svg class="color-change-svg">
-                        <use xlink:href="assets/instagram.svg#instagram" (click)="handleClick('instagram')" style="cursor: pointer;"></use>
-                    </svg>                     
+                <div class="footer-copyright">
+                    <p>Designed & Built by <span class="copyright-name">Swaraj Kumar</span></p>
+                    <p class="copyright-year">&copy; 2024 All rights reserved</p>
                 </div>
-            </div>
-
-            <div class="col-12 text-center mb-2 wow animate__animated animate__fadeInDown">
-                <div class="text-light">Swaraj Kumar <span class="copyright">&copy;</span> 2023</div>
             </div>
         </div>
     </div>
+    
+    <button class="scroll-to-top" [class.visible]="showScrollTop" (click)="scrollToTop()" title="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 </section>

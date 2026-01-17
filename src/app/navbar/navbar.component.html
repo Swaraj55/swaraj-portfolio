@@ -1,28 +1,57 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light" [ngClass]="navbarClass" (scroll)="onWindowScroll();">
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="navbarClass">
     <div class="container">
-        <a class="navbar-brand mb-0 fs-2 fw-bolder text-white" href="#">SwarajKr. _</a>
+        <a class="navbar-brand" href="#home">
+            <span class="brand-text">
+                <span class="brand-name">SwarajKr</span>
+                <span class="brand-dot">.</span>
+            </span>
+        </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
-            <span class="navbar-toggler-icon"></span>
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="isMenuOpen"
+            aria-label="Toggle navigation">
+            <span class="hamburger-line" [class.active]="isMenuOpen"></span>
+            <span class="hamburger-line" [class.active]="isMenuOpen"></span>
+            <span class="hamburger-line" [class.active]="isMenuOpen"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item ">
-                    <a class="nav-link active fw-bold text-white mt-3 fs-6" aria-current="page" href="#home">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#home" (click)="closeMenu()" [class.active]="activeSection === 'home'">
+                        <span class="nav-text">Home</span>
+                        <span class="nav-indicator"></span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white mt-3 fs-6" href="#skill_section">Skills</a>
+                    <a class="nav-link" href="#skill_section" (click)="closeMenu()" [class.active]="activeSection === 'skill_section'">
+                        <span class="nav-text">Skills</span>
+                        <span class="nav-indicator"></span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white mt-3 fs-6" href="#experience">Experience</a>
+                    <a class="nav-link" href="#experience" (click)="closeMenu()" [class.active]="activeSection === 'experience'">
+                        <span class="nav-text">Experience</span>
+                        <span class="nav-indicator"></span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white mt-3 fs-6" href="#project-section">Projects</a>
+                    <a class="nav-link" href="#project-section" (click)="closeMenu()" [class.active]="activeSection === 'project-section'">
+                        <span class="nav-text">Projects</span>
+                        <span class="nav-indicator"></span>
+                    </a>
                 </li>
-
-                <button type="button" class="mt-2" (click)="scrollToConnect()"><span>Let's Connect</span></button>
+                <li class="nav-item">
+                    <button type="button" class="nav-connect-btn" (click)="scrollToConnect(); closeMenu()">
+                        <span>Let's Connect</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
+    <div class="navbar-backdrop" [class.show]="isMenuOpen" (click)="closeMenu()"></div>
 </nav>

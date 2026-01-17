@@ -1,0 +1,43 @@
+name: Build Angular and Push to Node Repo
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Angular Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular
+        run: npm run build -- --configuration production
+
+      - name: Clone Node Repo
+        run: |
+          git clone https://${{ secrets.NODE_REPO_TOKEN }}@github.com/Swaraj55/swarajkc-portfolio.git node-repo
+
+      - name: Copy Angular build to Node dist
+        run: |
+          rm -rf node-repo/dist
+          mkdir -p node-repo/dist
+          cp -r dist/* node-repo/dist/
+
+      - name: Commit and push
+        run: |
+          cd node-repo
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git commit -m "Auto update Angular build"
+          git push

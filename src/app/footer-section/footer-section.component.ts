@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-footer-section',
@@ -6,44 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer-section.component.scss']
 })
 export class FooterSectionComponent implements OnInit {
+  showScrollTop = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.checkScrollPosition();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    this.checkScrollPosition();
+  }
+
+  checkScrollPosition() {
+    this.showScrollTop = window.pageYOffset > 300;
   }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  handleClick(social_item: string) {
-    let link = '';
-    switch(social_item) {
-      case 'linkedin': 
-        link = 'https://www.linkedin.com/in/swaraj-kumar5/';
-        window.open(link, '_blank');
-        break;
-      
-      case 'github': 
-        link = 'https://github.com/Swaraj55';
-        window.open(link, '_blank');
-        break;
-
-      case 'instagram':
-        link = 'https://www.instagram.com/learn.eternally/';
-        window.open(link, '_blank');
-        break; 
-
-      case 'twitter': 
-        link = 'https://twitter.com/SwarajV5';
-        window.open(link, '_blank');
-        break;
-
-      case 'facebook': 
-        link = 'https://www.facebook.com/swaraj.chaturvedi.39';
-        window.open(link, '_blank');
-        break;
-    }
-  }
-  
 }
