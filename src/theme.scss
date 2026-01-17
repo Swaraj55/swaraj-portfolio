@@ -1,38 +1,110 @@
-// Import theming functions
-@import '~@angular/material/theming';
+// Angular Material 18+ - No need to import theming separately
+// Styles are handled through the main styles.scss file
 
 :host ::ng-deep {
-    //The below code when field is empty
-    .mat-form-field-empty.mat-form-field-label {
-        color: aliceblue;
+    // Support both Legacy and MDC (Material Design Components) classes
+    
+    // Labels visibility - Legacy
+    .mat-form-field-empty.mat-form-field-label,
+    .mat-form-field-label {
+        color: aliceblue !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
-    .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
-        color: #212529;
+    
+    // Labels visibility - MDC
+    .mat-mdc-form-field-label,
+    .mdc-floating-label,
+    mat-label {
+        color: aliceblue !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
-    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label {
-        color: #f44336;
+    
+    // Focused labels - Legacy
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-label,
+    .mat-form-field-appearance-outline.mat-focused mat-label {
+        color: #212529 !important;
+        opacity: 1 !important;
     }
-    .ng-valid .mat-form-field-label {
-        color: aliceblue;
+    
+    // Focused labels - MDC
+    .mat-mdc-form-field.mat-focused .mdc-floating-label,
+    .mdc-text-field--focused .mdc-floating-label,
+    .mat-mdc-form-field.mat-focused mat-label {
+        color: #212529 !important;
+        opacity: 1 !important;
+    }
+    
+    // Invalid focused labels - Legacy
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label,
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused mat-label {
+        color: #f44336 !important;
+        opacity: 1 !important;
+    }
+    
+    // Invalid focused labels - MDC
+    .mat-mdc-form-field.mat-mdc-form-field-invalid.mat-focused .mdc-floating-label,
+    .mat-mdc-form-field.mat-mdc-form-field-invalid.mat-focused mat-label {
+        color: #f44336 !important;
+        opacity: 1 !important;
+    }
+    
+    // Valid labels - Legacy and MDC
+    .ng-valid .mat-form-field-label,
+    .ng-valid .mat-mdc-form-field-label,
+    .ng-valid .mdc-floating-label,
+    .ng-valid mat-label {
+        color: aliceblue !important;
+        opacity: 1 !important;
     }
 
-    //The below code apply when the input field is empty or intial state of the input field
-    .mat-form-field-appearance-outline .mat-form-field-outline{
+    // Outline colors - Legacy
+    .mat-form-field-appearance-outline .mat-form-field-outline {
         color: aliceblue;
     }
-    //The Below code apply when we put focus on the input field
+    
+    // Outline colors - MDC
+    .mat-mdc-outline .mdc-notched-outline__leading,
+    .mat-mdc-outline .mdc-notched-outline__notch,
+    .mat-mdc-outline .mdc-notched-outline__trailing,
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+        border-color: aliceblue;
+    }
+    
+    // Focused outline - Legacy
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
         color: #212529;
-    }  
-
-    .field input{
-        caret-color: aliceblue;/*The 'caret-color' is CSS property sets the color of 
-        the color of the insertion caret, the visible marker(or blinking marker)*/
     }
-    .mat-form-field-infix .mat-input-element{
+    
+    // Focused outline - MDC
+    .mat-mdc-form-field.mat-focused .mat-mdc-outline .mdc-notched-outline__leading,
+    .mat-mdc-form-field.mat-focused .mat-mdc-outline .mdc-notched-outline__notch,
+    .mat-mdc-form-field.mat-focused .mat-mdc-outline .mdc-notched-outline__trailing,
+    .mdc-text-field--focused .mdc-notched-outline__leading,
+    .mdc-text-field--focused .mdc-notched-outline__notch,
+    .mdc-text-field--focused .mdc-notched-outline__trailing {
+        border-color: #212529;
+    }
+
+    // Input caret color - Legacy and MDC
+    .field input,
+    .mat-form-field-infix .mat-input-element,
+    .mat-mdc-form-field .mat-mdc-input-element,
+    .mdc-text-field__input {
+        caret-color: aliceblue;
+    }
+    
+    // Input text color - Legacy and MDC
+    .mat-form-field-infix .mat-input-element,
+    .mat-mdc-form-field .mat-mdc-input-element,
+    .mdc-text-field__input {
         color: aliceblue;
     }
 
+    // Legacy underline
     .mat-form-field-appearance-legacy .ng-untouched .mat-form-field-underline {
         color: #4359df;
     }

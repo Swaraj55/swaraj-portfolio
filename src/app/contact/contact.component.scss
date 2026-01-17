@@ -188,60 +188,117 @@
     margin-bottom: 20px;
 }
 
-::ng-deep .custom-field {
-    width: 100%;
+// Bootstrap Form Styling
+.form-group {
+    margin-bottom: 0;
     
-    .mat-form-field-wrapper {
-        padding-bottom: 0;
-    }
-    
-    .mat-form-field-outline {
-        color: rgba(168, 85, 247, 0.3) !important;
-    }
-    
-    .mat-form-field-outline-thick {
-        color: #a855f7 !important;
-    }
-    
-    .mat-form-field-label {
+    .form-label {
         color: #b8b8b8 !important;
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 0.95rem;
+        
+        .text-danger {
+            color: #f44336 !important;
+        }
     }
     
-    .mat-form-field-label.mat-focused {
-        color: #a855f7 !important;
+    .input-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: 100%;
+        
+        .input-group-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            color: #a855f7;
+            font-size: 18px;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            
+            &::placeholder {
+                color: rgba(184, 184, 184, 0.5);
+            }
+            
+            &:focus {
+                background-color: rgba(255, 255, 255, 0.08);
+                border-color: #a855f7;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+            }
+            
+            &.is-invalid {
+                border-color: rgba(244, 67, 54, 0.8);
+                
+                &:focus {
+                    border-color: #f44336;
+                    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+                }
+            }
+            
+            &.is-valid {
+                border-color: rgba(76, 175, 80, 0.6);
+                
+                &:focus {
+                    border-color: #4caf50;
+                    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+                }
+            }
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+            padding-top: 16px;
+        }
     }
     
-    .mat-input-element {
-        color: #ffffff !important;
-        caret-color: #a855f7 !important;
+    // Textarea specific styling
+    .textarea-group {
+        .input-group-icon {
+            top: 20px;
+            transform: translateY(0);
+            align-items: flex-start;
+        }
+        
+        .form-control {
+            padding-top: 16px;
+        }
     }
     
-    .mat-form-field-prefix {
-        color: #a855f7;
-        margin-right: 10px;
-    }
-    
-    .mat-icon {
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-    }
-    
-    .textarea-icon {
-        align-self: flex-start;
-        margin-top: 8px;
-    }
-    
-    .mat-form-field-infix {
-        border-top: none;
-    }
-    
-    &.mat-form-field-invalid {
-        .mat-form-field-outline {
-            color: rgba(244, 67, 54, 0.5) !important;
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 6px;
+        font-size: 0.875rem;
+        color: #f44336;
+        
+        &.d-block {
+            display: block !important;
         }
     }
 }
+
+// Bootstrap form styles are now used - Material styles removed
 
 .submit-btn {
     width: 100%;
@@ -254,12 +311,13 @@
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
     
     &::before {
         content: '';

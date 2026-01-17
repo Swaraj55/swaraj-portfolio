@@ -1,18 +1,22 @@
 
 // Custom Theming for Angular Material
 @use '@angular/material' as mat;
+
 @include mat.core();
 
-$swaraj-portfolio-primary: mat.define-palette(mat.$indigo-palette);
-$swaraj-portfolio-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$swaraj-portfolio-warn: mat.define-palette(mat.$red-palette);
+// Use Angular Material 18 M2 theming API with m2- prefix
+$swaraj-portfolio-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$swaraj-portfolio-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$swaraj-portfolio-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$swaraj-portfolio-theme: mat.define-light-theme((
+$swaraj-portfolio-theme: mat.m2-define-light-theme((
   color: (
     primary: $swaraj-portfolio-primary,
     accent: $swaraj-portfolio-accent,
     warn: $swaraj-portfolio-warn,
-  )
+  ),
+  typography: mat.m2-define-typography-config(),
+  density: 0,
 ));
 
 @include mat.all-component-themes($swaraj-portfolio-theme);
@@ -197,4 +201,53 @@ section {
 
 .pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Angular Material Form Field Error Handling
+// Support both Legacy and MDC (Material Design Components) classes
+// Hide error messages until field is touched or form is submitted
+
+// Legacy form fields
+.mat-form-field {
+  .mat-form-field-subscript-wrapper {
+    .mat-error {
+      display: none !important;
+    }
+  }
+  
+  // Show errors only when field is touched or dirty
+  &.mat-form-field-invalid {
+    &.mat-form-field-touched,
+    &.mat-form-field-dirty {
+      .mat-form-field-subscript-wrapper {
+        .mat-error {
+          display: block !important;
+        }
+      }
+    }
+  }
+}
+
+// MDC form fields (Angular Material 16+)
+.mat-mdc-form-field {
+  .mat-mdc-form-field-subscript-wrapper {
+    .mat-mdc-form-field-error,
+    .mat-error {
+      display: none !important;
+    }
+  }
+  
+  // Show errors only when field is touched or dirty
+  &.mat-mdc-form-field-invalid,
+  &.ng-invalid {
+    &.ng-touched,
+    &.ng-dirty {
+      .mat-mdc-form-field-subscript-wrapper {
+        .mat-mdc-form-field-error,
+        .mat-error {
+          display: block !important;
+        }
+      }
+    }
+  }
 }

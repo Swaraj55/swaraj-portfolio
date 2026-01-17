@@ -28,59 +28,103 @@
             <!-- Form Section -->
             <div class="col-md-7 col-sm-12 col-xs-12 contact-form-wrapper" [formGroup]="contactUs">
                 <div class="contact-form">
-                    <div class="form-row">
+                    <div class="row">
                         <div class="col-md-6 col-sm-12 form-field-wrapper">
-                            <mat-form-field class="custom-field" appearance="outline">
-                                <mat-label>First Name</mat-label>
-                                <input type="text" matInput formControlName="firstname" required>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-error *ngIf="contactUs.controls['firstname'].hasError('required')">
+                            <div class="form-group mb-3">
+                                <label for="firstname" class="form-label">First Name <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="firstname"
+                                        formControlName="firstname" 
+                                        [class.is-invalid]="shouldShowError('firstname') && contactUs.get('firstname')?.hasError('required')"
+                                        [class.is-valid]="contactUs.get('firstname')?.valid && contactUs.get('firstname')?.touched"
+                                        placeholder="Enter your first name">
+                                </div>
+                                <div class="invalid-feedback d-block" *ngIf="shouldShowError('firstname') && contactUs.get('firstname')?.hasError('required')">
                                     First name is required
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6 col-sm-12 form-field-wrapper">
-                            <mat-form-field class="custom-field" appearance="outline">
-                                <mat-label>Last Name</mat-label>
-                                <input type="text" matInput formControlName="lastname" required>
-                                <mat-icon matPrefix>person_outline</mat-icon>
-                                <mat-error *ngIf="contactUs.controls['lastname'].hasError('required')">
+                            <div class="form-group mb-3">
+                                <label for="lastname" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="lastname"
+                                        formControlName="lastname" 
+                                        [class.is-invalid]="shouldShowError('lastname') && contactUs.get('lastname')?.hasError('required')"
+                                        [class.is-valid]="contactUs.get('lastname')?.valid && contactUs.get('lastname')?.touched"
+                                        placeholder="Enter your last name">
+                                </div>
+                                <div class="invalid-feedback d-block" *ngIf="shouldShowError('lastname') && contactUs.get('lastname')?.hasError('required')">
                                     Last name is required
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-row">
+                    <div class="row">
                         <div class="col-12 form-field-wrapper">
-                            <mat-form-field class="custom-field" appearance="outline">
-                                <mat-label>Email</mat-label>
-                                <input type="email" matInput formControlName="email" required>
-                                <mat-icon matPrefix>email</mat-icon>
-                                <mat-error *ngIf="contactUs.controls['email'].hasError('required')">
+                            <div class="form-group mb-3">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-icon">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="email"
+                                        formControlName="email" 
+                                        [class.is-invalid]="shouldShowError('email') && (contactUs.get('email')?.hasError('required') || contactUs.get('email')?.hasError('email'))"
+                                        [class.is-valid]="contactUs.get('email')?.valid && contactUs.get('email')?.touched"
+                                        placeholder="Enter your email">
+                                </div>
+                                <div class="invalid-feedback d-block" *ngIf="shouldShowError('email') && contactUs.get('email')?.hasError('required')">
                                     Email is required
-                                </mat-error>
-                                <mat-error *ngIf="contactUs.controls['email'].hasError('email')">
+                                </div>
+                                <div class="invalid-feedback d-block" *ngIf="shouldShowError('email') && contactUs.get('email')?.hasError('email') && !contactUs.get('email')?.hasError('required')">
                                     Please enter a valid email
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-row">
+                    <div class="row">
                         <div class="col-12 form-field-wrapper">
-                            <mat-form-field class="custom-field" appearance="outline">
-                                <mat-label>Message</mat-label>
-                                <textarea rows="6" matInput formControlName="message" required></textarea>
-                                <mat-icon matPrefix class="textarea-icon">message</mat-icon>
-                                <mat-error *ngIf="contactUs.controls['message'].hasError('required')">
+                            <div class="form-group mb-3">
+                                <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                                <div class="input-group textarea-group">
+                                    <span class="input-group-icon textarea-icon">
+                                        <i class="fa-solid fa-message"></i>
+                                    </span>
+                                    <textarea 
+                                        rows="6" 
+                                        class="form-control" 
+                                        id="message"
+                                        formControlName="message" 
+                                        [class.is-invalid]="shouldShowError('message') && contactUs.get('message')?.hasError('required')"
+                                        [class.is-valid]="contactUs.get('message')?.valid && contactUs.get('message')?.touched"
+                                        placeholder="Enter your message"></textarea>
+                                </div>
+                                <div class="invalid-feedback d-block" *ngIf="shouldShowError('message') && contactUs.get('message')?.hasError('required')">
                                     Message is required
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-row">
+                    <div class="row">
                         <div class="col-12">
                             <button 
                                 type="button" 

@@ -8,11 +8,12 @@ import { Overlay } from '@angular/cdk/overlay';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss', '../../theme.scss']
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
 
   contactUs: UntypedFormGroup = new UntypedFormGroup({});
+  formSubmitted: boolean = false;
 
   constructor(
     private _fb: UntypedFormBuilder,
@@ -22,13 +23,17 @@ export class ContactComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.contactUs = this._fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required]]
-    })
+    });
+    
+    // Ensure all fields start as untouched
+    Object.keys(this.contactUs.controls).forEach(key => {
+      this.contactUs.controls[key].markAsUntouched();
+    });
   }
 
   openDialog(successData: any) {
@@ -49,6 +54,17 @@ export class ContactComponent implements OnInit {
   }
 
   sendMail() {
+    this.formSubmitted = true;
+    
+    // Mark all fields as touched to show errors
+    Object.keys(this.contactUs.controls).forEach(key => {
+      this.contactUs.controls[key].markAsTouched();
+    });
+
+    if (this.contactUs.invalid) {
+      return;
+    }
+
     let payload = {
       firstname: this.contactUs.controls['firstname'].getRawValue(),
       lastname: this.contactUs.controls['lastname'].getRawValue(),
@@ -56,25 +72,24 @@ export class ContactComponent implements OnInit {
       message: this.contactUs.controls['message'].getRawValue()
     }
 
-    if(payload.firstname !== '' && payload.lastname !== '' && payload.email !== '') {
-      this.contactService.submitInfo(payload).subscribe((data: any) => {
+    this.contactService.submitInfo(payload).subscribe({
+      next: (data: any) => {
         if(data.message.status === 'success') {
-          let data = {image_success: './assets/thank-you.jpg'}
-          this.openDialog(data);
+          let successData = {image_success: './assets/thank-you.jpg'};
+          this.openDialog(successData);
+          this.contactUs.reset();
+          this.formSubmitted = false;
         }
-      });
-    } else {
-      if(payload.firstname === '') {
-        this.contactUs.controls['firstname'].setValidators(Validators.required)
-      } else if(payload.lastname === '') {
-        this.contactUs.controls['lastname'].setValidators(Validators.required)
-      } else if(payload.email === '') {
-        this.contactUs.controls['email'].setValidators([Validators.required, Validators.email])
-      } else {
-
+      },
+      error: (error) => {
+        console.error('Error sending mail:', error);
       }
+    });
+  }
 
-      this.contactUs.updateValueAndValidity();
-    }
+  shouldShowError(controlName: string): boolean {
+    const control = this.contactUs.get(controlName);
+    if (!control) return false;
+    return control.invalid && (control.touched || control.dirty || this.formSubmitted);
   }
 }
