@@ -3,9 +3,35 @@ name: Build Angular and Push to Node Repo
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 jobs:
+  check-commit:
+    runs-on: ubuntu-latest
+    outputs:
+      should-deploy: ${{ steps.check.outputs.should-deploy }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for commit message check
+      
+      - name: Check commit message
+        id: check
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+          if [[ "$COMMIT_MSG" == *"[deploy]"* ]] || [[ "$COMMIT_MSG" == *"[release]"* ]] || [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "should-deploy=true" >> $GITHUB_OUTPUT
+            echo "✅ Deployment triggered"
+          else
+            echo "should-deploy=false" >> $GITHUB_OUTPUT
+            echo "⏭️  Skipping deployment (commit message doesn't contain [deploy] or [release])"
+          fi
+
   build:
+    needs: check-commit
+    if: needs.check-commit.outputs.should-deploy == 'true'
     runs-on: ubuntu-latest
 
     steps:
