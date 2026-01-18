@@ -1,12 +1,66 @@
 {
   "name": "swaraj-portfolio",
   "version": "0.0.0",
+  "description": "Personal portfolio website built with Angular 18",
+  "author": "Swaraj Kumar Chaturvedi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Swaraj55/swaraj-portfolio.git"
+  },
+  "keywords": [
+    "angular",
+    "portfolio",
+    "typescript",
+    "web-development"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "ng": "ng",
+    
     "start": "ng serve",
+    "start:open": "ng serve --open",
+    "start:port": "ng serve --port 4200",
+    "start:host": "ng serve --host 0.0.0.0",
+    
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "build:dev": "ng build --configuration development",
+    "build:stats": "ng build --configuration production --stats-json",
+    "build:analyze": "npm run build:stats && npx webpack-bundle-analyzer dist/stats.json",
+    
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "watch:prod": "ng build --watch --configuration production",
+    
+    "test": "ng test",
+    "test:watch": "ng test --watch",
+    "test:coverage": "ng test --code-coverage",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    
+    "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,html,scss,css,json}\"",
+    
+    "clean": "rm -rf dist .angular node_modules/.cache",
+    "clean:all": "rm -rf dist .angular node_modules",
+    
+    "install:clean": "npm run clean:all && npm install",
+    "postinstall": "ng version",
+    
+    "serve:dist": "npx http-server dist/swaraj-portfolio -p 8080 -o",
+    "serve:dist:prod": "npm run build:prod && npm run serve:dist",
+    
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    
+    "deploy:check": "npm run build:prod && echo '✅ Build successful - ready to deploy'",
+    "precommit": "npm run lint && npm run test:ci"
   },
   "private": true,
   "dependencies": {
