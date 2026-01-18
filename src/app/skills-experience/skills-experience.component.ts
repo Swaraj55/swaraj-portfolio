@@ -28,10 +28,11 @@ export class SkillsExperienceComponent implements OnInit {
       },
       {
         skill_name: "TypeScript",
-        icon: 'fa-brands fa-typescript',
+        icon: 'fa-brands fa-js', // Fallback icon
         iconColor: '#3178C6',
         percentage: 80,
-        percentage_lablel: '80%'
+        percentage_lablel: '80%',
+        useCustomIcon: true // Use custom SVG instead
       },
       {
         skill_name: "HTML5",
