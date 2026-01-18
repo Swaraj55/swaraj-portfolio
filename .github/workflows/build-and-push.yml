@@ -65,5 +65,12 @@ jobs:
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add .
-          git commit -m "Auto update Angular build"
-          git push
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "ℹ️  No changes to commit. Working tree is clean. Skipping commit and push."
+            exit 0
+          else
+            git commit -m "Auto update Angular build"
+            git push
+            echo "✅ Successfully committed and pushed changes"
+          fi

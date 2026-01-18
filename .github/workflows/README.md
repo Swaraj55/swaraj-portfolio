@@ -185,8 +185,14 @@ Examples:
     git config user.name "GitHub Action"
     git config user.email "action@github.com"
     git add .
-    git commit -m "Auto update Angular build"
-    git push
+    # Check if there are changes to commit
+    if git diff --staged --quiet; then
+      echo "ℹ️  No changes to commit. Working tree is clean."
+      exit 0
+    else
+      git commit -m "Auto update Angular build"
+      git push
+    fi
 ```
 - **Purpose**: Commits and pushes the build files to the Node.js repository
 - **Git Configuration**:
@@ -194,9 +200,11 @@ Examples:
   - User email: "action@github.com"
 - **Git Operations**:
   1. Stages all changes: `git add .`
-  2. Commits with message: "Auto update Angular build"
-  3. Pushes to the repository
-- **Result**: Node.js repository is updated with the latest build
+  2. Checks if there are staged changes
+  3. If changes exist: Commits with message "Auto update Angular build" and pushes
+  4. If no changes: Skips commit/push gracefully (workflow still succeeds)
+- **Result**: Node.js repository is updated with the latest build (if changes exist)
+- **Note**: If the build output is identical to the previous build, the step will skip committing and the workflow will still succeed
 
 ### Required Secrets
 
@@ -292,6 +300,12 @@ git commit -m "WIP: testing changes"
    - Verify build completed successfully
    - Check `dist/` directory exists after build
    - Review file permissions
+
+5. **"No changes to commit" Message**
+   - This is **normal** and not an error
+   - Occurs when the build output is identical to the previous build
+   - The workflow will complete successfully without committing
+   - This saves unnecessary commits when nothing has changed
 
 ### Monitoring
 
